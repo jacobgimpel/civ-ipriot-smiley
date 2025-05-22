@@ -53,7 +53,7 @@ Address the following tasks and questions based on the code provided in this rep
 3. Run the project locally by executing the `main.py` file
 4. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
-![Local Execution (INSERT YOUR SCREENSHOT)](screenshots/CREATE_A_SCREENSHOT_OF_YOUR_local_setup.png)
+![Local Execution](screenshots\2.1.png)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
 
@@ -68,68 +68,80 @@ python3 main.py
 
 1. Examine the code for the `smiley.py` file and provide  an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
 
-   | Type                    | name       | value          |
-   | ----------              | ---------- | -------------- |
-   | built-in primitive type | _          |  _             |
-   | built-in composite type | _          |  _             |
-   | user-defined type       | _          |  _             |
+   | Type                    | name   | value         |
+   | ----------              |--------|---------------|
+   | built-in primitive type | dimmed | True          |
+   | built-in composite type | WHITE  | (255,255,255) |
+   | user-defined type       | Smiley | Smiley()      |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
-   | Object                   | Type                    |
-   | ------------             | ----------------------- |
-   | self.pixels              | _                       |
-   | A member of self.pixels  | _                       |
-   | self                     | _                       |
+   | Object                   | Type               |
+   | ------------             |--------------------|
+   | self.pixels              | Built-in composite |
+   | A member of self.pixels  | Built-in composite |
+   | self                     | User-defined type  |
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File       | First line  | Line range  |
-   | ------------ | ---------- | ----------- | ----------- |
-   |  sequence    |  _         | _           | _           |
-   |  selection   | _          | _           | _           |
-   |  iteration   | _          | _           | _           |
+   | Control Flow | File      | First line                    | Line range |
+   | ------------ |-----------|-------------------------------|------------|
+   |  sequence    | smiley.py | class Smiley: (Line 4)        | 4 - 39     |
+   |  selection   | sad.py    | if wide_open: (Line 26)       | 26 - 30    |
+   |  iteration   | happy.py  | for pixel in mouth: (Line 21) | 21 -22     |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
-   | Type                    | Used? | Example |
-   | ----------------------- | ----- | --------|
-   | int                     | _     | _          |
-   | float                   | _     | _          |
-   | str                     | _     | _          |
-   | bool                    | _     | _          |
+   | Type                    | Used?           | Example                                                                                              |
+   | ----------------------- |-----------------|------------------------------------------------------------------------------------------------------|
+   | int                     | Yes - smiley.py | Line 6 - GREEN = (0, 255, 0). The value for GREEN is a tuple, but it's elements are integers.        |
+   | float                   | Yes - happy.py  | Line 33 - def blink(self, **_delay=0.25_**):. delay is a float.                                      |
+   | str                     | No              | There are no examples of an str type within the code. An example of a str could be emotion = "angry" |
+   | bool                    | Yes -   sad.py  | Line 19 - def draw_eyes(self, **_wide_open=True_**): . In this example, the wide_open object is a bool|
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
-> Your answer here
+> Class variable: The variables WHITE, GREEN, RED, YELLOW and BLANK are all examples of class variables. They are defined within the class,
+> but outside any methods. All instances of the Smiley() class will share these variables.
+> 
+> Instance variable: self.pixels (Line 17). Each instance of Smiley() will have its own mutable instance of self.pixels - this is neccesary to allow 
+> for modification of the grid. 
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   > Your answer here
-   >
+   >The constructor is located on line 10, using def __init__(self): . Constructors are used to define instance variables, and establish the 
+   > initial state of the object. In the Happy class specifically, the constructor is used to create the happy expression, first by calling the Smiley superclass using
+   > super().
+   > 
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > Your answer here
+   > The constructor inherits the attributes of the parent class, using super(). In doing this, it executes the configuration of the parent class,
+   > and then modifies it using the draw_mouth and draw_eyes methods.
    >
 
 ### 2.3. Code style
 
 1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
 
-> Your answer here
+> The code adheres to the PEP 8 standard. The code also encapsulates the SenseHat object (in smiley.py), which is required for the code to function as intended. Because of this, for the sake of readability and functionality,
+> the SenseHat is likely to follow the same style, with minor deviations to accommodate the functions of the SenseHat's hardware. 
+> 
 >
 
 2. List three aspects of this convention you see applied in the code.
 
-> Your answer here
+> 1. snake_case is used for defining variables and functions: for example, line 16 of happy.py (def draw_mouth(self))
+> 2. CamelCase is used when naming classes: for example, line 6 of happy.py (class Happy(Smiley, Blinkable))
+> 3. Docstrings are written with triple quotes: for example, lines 20 to 23 of sad.py.
 >
 
 3. Give two examples of organizational documentation in the code.
 
-> Your answer here
+> 1. Docstrings - seen in lines 7 - 9 in happy.py
+> 2. Inline comments - seen on line 12 of smiley.py
 >
 
 ### 2.4. Identifying and understanding classes
